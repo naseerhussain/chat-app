@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <input [(ngModel)]="text" placeholder="Enter Text"/>
+  <button (click)="sendMessage()">Submit</button>
+  <button (click)="clear()">Clear Chat</button>
+</div>
+
+<div style="padding-left: 1%;">
+  <ul >
+    <li *ngFor="let msgObj of msgs" [ngClass]="msgObj.type == 'User' ? 'user-cls' : 'chatgpt-cls'"><span>{{msgObj.type}} : </span> <span> {{msgObj.msg}}</span></li>
+  </ul>
+</div>
+
+
