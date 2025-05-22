@@ -26,9 +26,14 @@ export class AppComponent implements OnInit {
     const msgPayload = { message: this.text };
     this.msgs.push({type:"User", "msg": this.text});
     this.myService.getChatResponse(msgPayload).subscribe(res => {
-      const respose = res["message"];
-      this.msgs.push({type:"ChatGPT", "msg": respose});
-    })
+      const respose = (JSON.parse(res["_body"])).message;
+      this.msgs.push({type:"AI Bot", "msg": respose});
+      this.text = "";
+    }, err => {
+      this.msgs.push({type:"AI Bot", "msg": "I cannot answer at the moment, please try again after sometime"});
+      this.text = "";
+    });
+    
   }
 
 
